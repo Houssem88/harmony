@@ -1,0 +1,140 @@
+/*	Fonts 	*/
+@font-face {
+	font-family: 'montserratBold';
+	src: url('../fonts/Montserrat-bold.ttf');
+}
+
+@font-face {
+	font-family: 'montserratRegular';
+	src: url('../fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'montserratLight';
+	src: url('../fonts/Montserrat-Light.ttf');
+}
+
+@font-face {
+	font-family: 'montserratItalic';
+	src: url('../fonts/Montserrat-Italic.ttf');
+}
+/*	End fonts */
+
+/*	 Style by default	*/
+body{
+	margin: 0px;
+	padding: 0px;
+	color: #424242;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: "montserratBold";
+	margin:0px;
+}
+
+p{
+	font-family: "montserratLight";
+	font-size: .9em;
+	line-height: 1.6em;
+}
+
+a{
+	font-family: "montserratItalic";
+	font-size: 12px;
+	color: #424242;
+	text-decoration: none;
+	border-bottom: 1px dotted #424242;
+}
+
+section{
+
+}
+
+
+/*	End Style by default */
+
+/*	Custom elements	*/
+.btn{
+	border: none;
+	outline: none;
+	height: 30px;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-family: "montserratRegular";
+	-webkit-transition: 150ms;
+    -o-transition: 150ms;
+    transition: 150ms;
+}
+
+.red{
+	background-color: #B71C1C;
+}
+
+.green{
+	background-color: #2E7D32;
+}
+
+.yellow{
+	background-color: #FFEA00;
+	color: #424242;
+}
+
+.blue{
+	background-color: #0091EA;
+}
+
+
+.btn-large{
+
+}
+
+.btn-medium{
+
+}
+
+.btn-small{
+
+}
+
+.btn:hover{
+	opacity: 0.8;
+}
+
+.msg-box{
+
+}
+
+.succes{
+	border: 2px solid #43A047;
+}
+
+.warning{
+	border: 2px solid #FFEA00;
+}
+
+.danger{
+	border: 2px solid #F44336;
+}
+
+.bloc-harmony{
+	width: 100%;
+}
+
+.container{
+	width: 100%;
+	height: auto;
+	margin: 0px auto;
+}
+
+/*	Step : import skinpack	*/
+.bloc-import{
+	width: 40%;
+	padding:20px 50px 20px 50px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 1px 1px #888888;
+	text-align: center;
+}
+
+.bloc-import button{
+	margin: 20px;
+}
