@@ -18,8 +18,8 @@
 				<h2>Home Harmony :)</h2>
 				<div class="bloc-import">
 					<h3>Importez votre skinpack</h3>
-					<!-- <input id ="skin-rep" type="file" class="btn-importFile"> -->
-					<button class="btn blue" onclick="zipIt()">test</button>
+					<input id ="skin-rep" type="file" class="btn-importFile" onchange="getSkinPack()">
+					<button class="btn blue" >test</button>
 				</div>
 			</div>
 			<div class="bloc-harmony" id="pg-colors">
@@ -27,11 +27,11 @@
 				<div class="hr-bloc-colors">
 					<div class="hr-elem-color">
 						<label for="label-title-color">Les titres</label>
-						<input class="jscolor">
+						<input class="jscolor" id="hrColorTitle">
 					</div>
 					<div class="hr-elem-color">
 						<label for="label-prg-color">Les paragraphes</label>
-						<input class="jscolor">
+						<input class="jscolor" id="hrColorPargraph">
 					</div>
 				</div>
 			</div>
