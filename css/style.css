@@ -46,8 +46,17 @@ a{
 	border-bottom: 1px dotted #424242;
 }
 
-section{
+label{
+	font-family: "montserratRegular";
+	display: inherit;
+}
 
+.jscolor{
+	height: 30px;
+	border: 1px solid #BDBDBD;
+	outline: none;
+	cursor: pointer;
+	padding-left:5px;
 }
 
 
@@ -135,6 +144,10 @@ section{
 	text-align: center;
 }
 
-.bloc-import button{
+.bloc-import .btn-importFile{
 	margin: 20px;
+}
+
+.hr-elem-color{
+	padding: 10px;
 }

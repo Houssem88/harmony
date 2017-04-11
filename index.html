@@ -5,6 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/jszip/dist/jszip.js"></script>
+	<script type="text/javascript" src="js/jszip/vendor/fileSaver.js"></script>
+	<script src="js/jscolor/jscolor.min.js"></script>
 </head>
 <body>
 	<header>
@@ -16,31 +18,30 @@
 				<h2>Home Harmony :)</h2>
 				<div class="bloc-import">
 					<h3>Importez votre skinpack</h3>
-					<button class="btn blue">Importer le skin</button>
+					<!-- <input id ="skin-rep" type="file" class="btn-importFile"> -->
+					<button class="btn blue" onclick="zipIt()">test</button>
 				</div>
 			</div>
 			<div class="bloc-harmony" id="pg-colors">
 				<h2>Change colors here :)</h2>
+				<div class="hr-bloc-colors">
+					<div class="hr-elem-color">
+						<label for="label-title-color">Les titres</label>
+						<input class="jscolor">
+					</div>
+					<div class="hr-elem-color">
+						<label for="label-prg-color">Les paragraphes</label>
+						<input class="jscolor">
+					</div>
+				</div>
 			</div>
 			<div class="bloc-harmony" id="pg-fonts">
 				<h2>Change some fonts here :)</h2>
 			</div>
 		</div>
-		<button class="btn green" onclick="zipIt()">zip</button>
+
 	</section>
 	<script type="text/javascript" src="js/harmony.js"></script>
 </body>
 
-<script type="text/javascript">
-		var zip = new JSZip();
-	zip.file("Hello.txt", "Hello World\n");
-	var img = zip.folder("images");
-	img.file("smile.gif", imgData, {base64: true});
-	zip.generateAsync({type:"blob"})
-	.then(function(content) {
-	    // see FileSaver.js
-	    saveAs(content, "example.zip");
-	});
-
-</script>
 </html>
