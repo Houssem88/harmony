@@ -74,12 +74,13 @@
 						<div class="hr-subsub-elem">
 							<h1>La police</h1>
 							<div class="bloc-harmony-inside">
-								<label for="label-text-typo">Les titres</label>
-								<select id="label-text-typo">
-									<option value="Arial">Arial</option>
-									<option value="Verdana">Verdana</option>
-									<option value="Helvetica">Helvetica</option>
-									<option value="Sans-Serif">Sans-Serif</option>
+								<label for="label-text-typo">La police des textes</label>
+								<select id="select-text-typo" onchange="getFont()">
+									<option value="Arial" style="font-family: arial;">Arial</option>
+									<option value="Verdana" style="font-family: verdana;">Verdana</option>
+									<option value="Helvetica" style="font-family: helvetica;">Helvetica</option>
+									<option value="Sans-Serif" style="font-family: Sans-Serif;">Sans-Serif</option>
+									<option value="Serif" style="font-family: Serif;">Serif</option>
 								</select>
 								<span id="chosenFontFamily"></span>
 							</div>

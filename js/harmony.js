@@ -6,3 +6,8 @@ $(".hr-elem-color").hover(function(){
 });
 
 /*	Get/Set which Font-family */
+function getFont(){
+	var getFontFamily = $("#select-text-typo").val();
+
+	$('#chosenFontFamily').empty().append(getFontFamily).css("font-family", getFontFamily);
+}

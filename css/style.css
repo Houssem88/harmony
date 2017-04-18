@@ -233,3 +233,13 @@ section{
 #chosenFontFamily{
 	display: inline-block;
 }
+
+#chosenFontFamily{
+	margin-left: 50px;
+	/*font-family: "montserratBold";*/
+}
+
+#select-text-typo{
+	width: 150px;
+	height: 30px;
+}
