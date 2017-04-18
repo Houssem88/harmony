@@ -24,7 +24,7 @@
 body{
 	margin: 0px;
 	padding: 0px;
-	color: #424242;
+	color: #484040;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -49,6 +49,13 @@ a{
 label{
 	font-family: "montserratRegular";
 	display: inherit;
+	margin-bottom: 7px;
+}
+
+section{
+	background: #E1F5FE;
+    position: relative;
+    z-index: 0;
 }
 
 .jscolor{
@@ -58,6 +65,16 @@ label{
 	cursor: pointer;
 	padding-left:5px;
 }
+
+.hide{
+	position: absolute;
+	z-index: -1;
+	overflow: hidden;
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+}
+
 /*	End Style by default */
 
 /*	Custom elements	*/
@@ -125,27 +142,94 @@ label{
 
 .bloc-harmony{
 	width: 100%;
+	box-shadow: 1px 1px 1px 1px #888888;
+	background-color: #FFFFFF;
 }
 
 .container{
-	width: 100%;
 	height: auto;
 	margin: 0px auto;
+	padding:10px 40px 10px 40px;
+}
+
+.bg-absolute{
+	display: block;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 300px;
+	background-color: #81D4FA;
+}
+
+.hr-bloc-customize-color, .hr-bloc-customize-text{
+	width: 90%;
+	margin: 10px auto;
+}
+
+.hover-current-bloc{
+	border-left: 2px solid #0091EA;
+		-webkit-transition: 150ms;
+    -o-transition: 150ms;
+    transition: 150ms
+}
+
+.bloc-harmony-inside{
+	display: inline-block;
+	margin:10px auto;
+}
+
+.bloc-harmony-inside label{
+	width: 100%;
 }
 
 /*	Step : import skinpack	*/
-.bloc-import{
-	width: 40%;
-	padding:20px 50px 20px 50px;
-	margin: 50px auto;
-	box-shadow: 1px 1px 1px 1px #888888;
+#pg-home h2{
+	font-size: 50px;
 	text-align: center;
 }
 
-.bloc-import .btn-importFile{
-	margin: 20px;
+.bloc-import{
+	width: 40%;
+	margin: 20px auto;
+	text-align: center;	
+	/*padding:20px 50px 20px 50px;*/
+	/*box-shadow: 1px 1px 1px 1px #888888;*/
 }
 
-.hr-elem-color{
+.skin-lbl-import{
+	padding-top: 10px;
+}
+
+.bloc-import .invalide-skin-msg{
+	display: block;
+	height: 30px;
+	font-family: "montserratBold";
+	font-size: 12px;
+	color: #F44336;
+}
+
+.bloc-import .valide-skin-msg {
+    display: block;
+    font-family: "montserratBold";
+    font-size: 12px;
+    color: #2E7D32;
+}
+
+.hr-sub-elem{
 	padding: 10px;
+}
+
+#pg-colors h2{
+	font-size: 32px;
+}
+
+.hr-subsub-elem{
+	width: 90%;
+	margin: 25px auto;
+	border-left: 3px solid;
+    padding-left: 20px;
+}
+
+#chosenFontFamily{
+	display: inline-block;
 }

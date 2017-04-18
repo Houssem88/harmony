@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Harmony</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/jszip/dist/jszip.js"></script>
@@ -13,35 +14,85 @@
 		<div class="top-wrapper"></div>
 	</header>
 	<section>
+	<span class="bg-absolute"></span>
 		<div class="container">
-			<div class="bloc-harmony" id="pg-home">
-				<h2>Home Harmony :)</h2>
+			<div class="bloc-harmony-head" id="pg-home">
+				<h2>Harmony</h2>
 				<div class="bloc-import">
-					<h3>Importez votre skinpack</h3>
-					<input id ="skin-rep" type="file" class="btn-importFile" onchange="getSkinPack()">
-					<button class="btn blue" >test</button>
+					<input id ="skin-rep" type="file" class="hide" onchange="getSkinPack()">
+					<label for="skin-rep" class="skin-lbl-import btn blue">Importez votre skinpack</label>
+					<span class="valide-skin-msg" id="successZip"></span>
+					<span class="invalide-skin-msg" id="errorZip"></span>
+					<span id="show"></span>
 				</div>
 			</div>
 			<div class="bloc-harmony" id="pg-colors">
-				<h2>Change colors here :)</h2>
-				<div class="hr-bloc-colors">
-					<div class="hr-elem-color">
-						<label for="label-title-color">Les titres</label>
-						<input class="jscolor" id="hrColorTitle">
-					</div>
-					<div class="hr-elem-color">
-						<label for="label-prg-color">Les paragraphes</label>
-						<input class="jscolor" id="hrColorPargraph">
+				
+				<div class="hr-bloc-customize-color">
+					<div class="hr-sub-elem">
+						<!-- Les couleurs -->
+						<h2>Les couleurs</h2>
+
+						<div class="hr-subsub-elem">
+							<!-- Charte graphique : proposer au moins 2 couleurs de la charte -->
+							<h1>La charte graphique</h1>
+
+							<div class="bloc-harmony-inside">
+								<label for="label-title-color">Couleur principale</label>
+								<input class="jscolor" id="hrColorPrincipale">
+							</div>
+
+							<div class="bloc-harmony-inside">
+								<label for="label-title-color">Couleur secondaire</label>
+								<input class="jscolor" id="hrColorSecondaire">
+							</div>
+						</div>
+
+						<div class="hr-subsub-elem">
+							<!-- Couleurs des textes -->
+							<h1>Couleurs des textes</h1>
+							
+							<div class="bloc-harmony-inside">
+								<label for="label-title-color">Les titres</label>
+								<input class="jscolor" id="hrColorTitle">
+							</div>
+
+							<div class="bloc-harmony-inside">
+								<label for="label-prg-color">Les paragraphes</label>
+								<input class="jscolor" id="hrColorPargraph">
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="bloc-harmony" id="pg-fonts">
-				<h2>Change some fonts here :)</h2>
+				
+				<hr style="width: 80%;">
+				
+				<div class="hr-bloc-customize-text">
+					<div class="hr-sub-elem">
+						<h2>Textes et typo</h2>
+
+						<div class="hr-subsub-elem">
+							<h1>La police</h1>
+							<div class="bloc-harmony-inside">
+								<label for="label-text-typo">Les titres</label>
+								<select id="label-text-typo">
+									<option value="Arial">Arial</option>
+									<option value="Verdana">Verdana</option>
+									<option value="Helvetica">Helvetica</option>
+									<option value="Sans-Serif">Sans-Serif</option>
+								</select>
+								<span id="chosenFontFamily"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <button class="btn blue" onclick="changeColorsText()">valider</button> -->
 			</div>
 		</div>
-
 	</section>
 	<script type="text/javascript" src="js/harmony.js"></script>
+	<script type="text/javascript" src="js/harmonyCompression.js"></script>
 </body>
 
 </html>
