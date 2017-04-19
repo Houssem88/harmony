@@ -175,6 +175,7 @@ section{
 
 .bloc-harmony-inside{
 	display: inline-block;
+	width: 300px;
 	margin:10px auto;
 }
 
