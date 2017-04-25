@@ -8,6 +8,17 @@ $(".hr-elem-color").hover(function(){
 /*	Get/Set which Font-family */
 function getFont(){
 	var getFontFamily = $("#select-text-typo").val();
+	$('#visTitle').css("font-family", getFontFamily);
+}
 
-	$('#chosenFontFamily').empty().append(getFontFamily).css("font-family", getFontFamily);
+/*	get style on visualitaion bloc */
+function getChangeColor1(){
+	var getPrincipalColor = $("#hrColorPrincipale").val();
+	$("#visHeard").css("background-color", "#"+getPrincipalColor);
+	$("#visRightMenu").css("background-color", "#"+getPrincipalColor);
+}
+
+function getChangeColor2(){
+	var getSecondColor = $("#hrColorSecondaire").val();
+	$(".previs-btn-menu").css("background-color", "#"+getSecondColor);
 }

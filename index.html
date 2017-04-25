@@ -22,8 +22,8 @@
 				<div class="bloc-import">
 					<input id ="skin-rep" type="file" class="hide" onchange="getSkinPack()">
 					<label for="skin-rep" class="skin-lbl-import btn blue">Importez votre skinpack</label>
-					<span class="valide-skin-msg" id="successZip"></span>
-					<span class="invalide-skin-msg" id="errorZip"></span>
+					<span class="valide-skin-msg" id="msgSkinpackImportation"></span>
+					<!-- <span class="invalide-skin-msg" id="errorZip"></span> -->
 					<span id="show"></span>
 				</div>
 			</div>
@@ -40,12 +40,12 @@
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur principale</label>
-								<input class="jscolor" id="hrColorPrincipale">
+								<input class="jscolor" id="hrColorPrincipale" onchange="getChangeColor1()">
 							</div>
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur secondaire</label>
-								<input class="jscolor" id="hrColorSecondaire">
+								<input class="jscolor" id="hrColorSecondaire" onchange="getChangeColor2()">
 							</div>
 						</div>
 
@@ -64,10 +64,27 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- visualisation at right -->
+					<div class="hr-bloc-visuation">
+						<div class="visualisation-inside">
+							<div class="previs-screen-header" id="visHeard">
+								<div class="previs-header-menu">
+									<div class="previs-btn-menu" id="visBtnMenuTop"></div>
+									<div class="previs-btn-menu" id="visBtnMenuTop"></div>
+									<div class="previs-btn-menu" id="visBtnMenuTop"></div>
+								</div>
+							</div>
+							<div class="previs-screen-rightMenu" id="visRightMenu"></div>
+							<h1 id="visTitle">harmony</h1>
+							<p id="visParag">paragraphe ? c'est ici que ça se passe :)</p>
+						</div>
+					</div>
 				</div>
 				
 				<hr style="width: 80%;">
-				
+				<div class="clearfix"></div>		
+
 				<div class="hr-bloc-customize-text">
 					<div class="hr-sub-elem">
 						<h2>Textes et typo</h2>
