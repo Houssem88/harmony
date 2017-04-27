@@ -55,12 +55,12 @@
 							
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Les titres</label>
-								<input class="jscolor" id="hrColorTitle">
+								<input class="jscolor" id="hrColorTitle" onchange="getChangeColorTitle()">
 							</div>
 
 							<div class="bloc-harmony-inside">
 								<label for="label-prg-color">Les paragraphes</label>
-								<input class="jscolor" id="hrColorPargraph">
+								<input class="jscolor" id="hrColorPargraph" onchange="getChangeColorText()">
 							</div>
 						</div>
 					</div>
@@ -75,9 +75,11 @@
 									<div class="previs-btn-menu" id="visBtnMenuTop"></div>
 								</div>
 							</div>
-							<div class="previs-screen-rightMenu" id="visRightMenu"></div>
-							<h1 id="visTitle">harmony</h1>
-							<p id="visParag">paragraphe ? c'est ici que ça se passe :)</p>
+							<div class="previs-screen-leftMenu" id="visRightMenu"></div>
+							<div class="previs-inside-cours">
+								<h1 id="visTitle">harmony</h1>
+								<p id="visParag">paragraphe ? c'est ici que ça se passe :)</p>
+							</div>
 						</div>
 
 						<div class="hr-bloc-generate">
@@ -86,8 +88,7 @@
 					</div>
 				</div>
 				
-				<hr style="width: 80%;">
-				<div class="clearfix"></div>		
+			<!-- 	<div class="clearfix"></div>	 -->	
 
 				<div class="hr-bloc-customize-text">
 					<div class="hr-sub-elem">
@@ -116,7 +117,7 @@
 		</div>
 	</section>
 	<script type="text/javascript" src="js/harmony.js"></script>
-	<script type="text/javascript" src="js/harmonyCompression.js"></script>
+	<script type="text/javascript" src="js/harmonyZip.js"></script>
 </body>
 
 </html>

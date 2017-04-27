@@ -245,7 +245,7 @@ section{
 }
 
 .visualisation-inside{
-	border:1px solid #757575;
+	border:3px solid #757575;
 	height: 100%;
 	background-color: #EEEEEE;
 }
@@ -274,19 +274,29 @@ section{
 
 }
 
-.previs-screen-rightMenu{
+.previs-screen-leftMenu{
 	width: 40px;
 	height: 86%;
 	background-color: #616161;
 	border-top: 2px solid #FFFFFF;
 	position: absolute;
-	top:40px;
-	right: 1px;
+	top:44px;
 	z-index: 50;
 }
 
 .hr-bloc-generate{
 	margin-top:10px;
+}
+
+.previs-inside-cours{
+	width: 100%;
+	padding:20px 0px 0px 65px;
+	box-sizing:border-box;
+}
+
+#visTitle,
+#visParag{
+	
 }
 
 #chosenFontFamily{

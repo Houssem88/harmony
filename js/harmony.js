@@ -22,3 +22,13 @@ function getChangeColor2(){
 	var getSecondColor = $("#hrColorSecondaire").val();
 	$(".previs-btn-menu").css("background-color", "#"+getSecondColor);
 }
+
+function getChangeColorTitle(){
+	var getTitleColor = $("#hrColorTitle").val();
+	$("#visTitle").css("color", "#"+getTitleColor);
+}
+
+function getChangeColorText(){
+	var getTextColor = $("#hrColorPargraph").val();
+	$("#visParag").css("color", "#"+getTextColor);
+}
