@@ -8,14 +8,14 @@ function getSkinPack(){
     /*var insideZIP = zip.files["example/css/stuff.css"];*/
     var allSkin = zip.files;
 
+    localStorage.setItem("allSkin", allSkin); // "allskin" contains all skins files.
+
     var insideZIP = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css"]; // bad way, need to change it for a fetch
-    
     $("#msgSkinpackImportation").empty().append("Skinpack chargé, et prêt à être modifié").css("color", "#2E7D32");
  
     //NEXT is just to "see" the content of the css file
     zip.file(insideZIP.name).async("string").then(function success(content) {
       // use the content
-      /*console.log(content);*/
       localStorage.setItem("skinCSS", content);
     },
     function error(e) {
@@ -37,26 +37,23 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 }
 
 function validateStyle(){
-  /*var updateSkinCss = localStorage.getItem("skinCSS");*/
-
-  var updateSkinCss = localStorage.getItem("skinCSS");
-  console.log("from local"+updateSkinCss);
-}
-
-function test(){
   var zip = new JSZip();
 
-  var getAllSkinFiles = localStorage.getItem("allSkin"); 
-  console.log(getAllSkinFiles);
-  /*var getSkinCss = localStorage.getItem("skinCSS");*/
+  var getSkinCss = localStorage.getItem("skinCSS");
+  var getSkinAll = localStorage.getItem("allSkin");
 
- /* zip.file("skin.css", getSkinCss);*/
- /* zip.folder(getAllSkinFiles).file("skin.css", getSkinCss);*/
+  /*   find a way to get all skinpack content and put the new skin.css (modified inside) */
 
-  zip.folder(getAllSkinFiles);
+  console.log(getSkinCss);
+
+  /*WRITING INSIDE SKIN.CSS*/
+  var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
+  /*END OF WRITING*/
+
+  zip.file("skin.css", getSkinCss+getMainColor);
+
   zip.generateAsync({type:"blob"})
   .then(function(content) {
-    // see FileSaver.js
-    saveAs(content, "example.zip");
+    saveAs(content, "skinpack.zip");
   });
 }
