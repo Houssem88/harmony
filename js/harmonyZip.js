@@ -1,6 +1,8 @@
 
 function getSkinPack(){
-	var zip = new JSZip();  
+	
+  var zip = new JSZip();  
+  
   zip.loadAsync( document.getElementById("skin-rep").files[0])
   .then(function(zip){
     /*var insideZIP = zip.files["example/css/stuff.css"];*/
@@ -37,14 +39,17 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 }
 
 function validateStyle(){
-  var updateSkinCss = localStorage.getItem("skinCSS");
+  /*var updateSkinCss = localStorage.getItem("skinCSS");*/
+
+  var updateSkinCss = localStorage.getItem("allSkin");
   console.log("from local"+updateSkinCss);
 }
 
 function test(){
   var zip = new JSZip();
 
-  var getAllSkinFiles = localStorage.getItem("allSkin"); console.log(getAllSkinFiles);
+  var getAllSkinFiles = localStorage.getItem("allSkin"); 
+  console.log(getAllSkinFiles);
   /*var getSkinCss = localStorage.getItem("skinCSS");*/
 
  /* zip.file("skin.css", getSkinCss);*/
