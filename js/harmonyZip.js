@@ -8,8 +8,6 @@ function getSkinPack(){
     /*var insideZIP = zip.files["example/css/stuff.css"];*/
     var allSkin = zip.files;
 
-    localStorage.setItem("allSkin", allSkin); // "allskin" contains all skins files.
-
     var insideZIP = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css"]; // bad way, need to change it for a fetch
     
     $("#msgSkinpackImportation").empty().append("Skinpack chargé, et prêt à être modifié").css("color", "#2E7D32");
@@ -41,7 +39,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 function validateStyle(){
   /*var updateSkinCss = localStorage.getItem("skinCSS");*/
 
-  var updateSkinCss = localStorage.getItem("allSkin");
+  var updateSkinCss = localStorage.getItem("skinCSS");
   console.log("from local"+updateSkinCss);
 }
 
