@@ -2,7 +2,7 @@
 var zip = new JSZip();
 var content;
 
-function getSkinPack(content){
+function getSkinPack(){
 
   zip.loadAsync( document.getElementById("skin-rep").files[0]).then(function(zip){
     var allSkin = zip.files;
@@ -39,7 +39,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   alert('The File APIs are not fully supported in this browser.');
 }
 
-function validateStyle(content){
+function validateStyle(){
 
   var getSkinCss = localStorage.getItem("skinCSS");
   var getMainCss = localStorage.getItem("mainCSS");
