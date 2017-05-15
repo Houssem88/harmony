@@ -1,29 +1,28 @@
+ 
+var zip = new JSZip();
+var content;
 
-function getSkinPack(){
-	
-  var zip = new JSZip();  
-  
-  zip.loadAsync( document.getElementById("skin-rep").files[0])
-  .then(function(zip){
-    /*var insideZIP = zip.files["example/css/stuff.css"];*/
+function getSkinPack(content){
+
+  zip.loadAsync( document.getElementById("skin-rep").files[0]).then(function(zip){
     var allSkin = zip.files;
 
-    localStorage.setItem("allSkin", allSkin); // "allskin" contains all skins files.
+    var insideZIP = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css"]; // bad way, need to change it for a dynamic way
+    var insideMain = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/main.css"];
 
-    var insideZIP = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css"]; // bad way, need to change it for a fetch
     $("#msgSkinpackImportation").empty().append("Skinpack chargé, et prêt à être modifié").css("color", "#2E7D32");
- 
-    //NEXT is just to "see" the content of the css file
+
+    //NEXT is to get the content of the css files
     zip.file(insideZIP.name).async("string").then(function success(content) {
-      // use the content
       localStorage.setItem("skinCSS", content);
     },
     function error(e) {
-      // handle the error
       console.log("erreur");
     });
+    zip.file(insideMain.name).async("string").then(function success(contentMain){
+      localStorage.setItem("mainCSS", contentMain);
+    });
   },
-
   function(){
     $("#msgSkinpackImportation").empty().append("Erreur lors du chargement").css("color", "red");
   });
@@ -36,22 +35,18 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   alert('The File APIs are not fully supported in this browser.');
 }
 
-function validateStyle(){
-  var zip = new JSZip();
+function validateStyle(content){
 
   var getSkinCss = localStorage.getItem("skinCSS");
-  var getSkinAll = localStorage.getItem("allSkin");
+  var getMainCss = localStorage.getItem("mainCSS");
+  var getSkinAll = localStorage.getItem("all");
 
-  /*   find a way to get all skinpack content and put the new skin.css (modified inside) */
-
-  console.log(getSkinCss);
-
-  /*WRITING INSIDE SKIN.CSS*/
+  /*Get some css properties from harmony*/
   var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
-  /*END OF WRITING*/
 
-  zip.file("skin.css", getSkinCss+getMainColor);
-
+  zip.file("skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css", getSkinCss+getMainColor);
+  zip.file("skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/main.css", getMainCss+getMainColor);
+  
   zip.generateAsync({type:"blob"})
   .then(function(content) {
     saveAs(content, "skinpack.zip");
