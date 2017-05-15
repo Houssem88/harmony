@@ -13,12 +13,16 @@ function getSkinPack(content){
     $("#msgSkinpackImportation").empty().append("Skinpack chargé, et prêt à être modifié").css("color", "#2E7D32");
 
     //NEXT is to get the content of the css files
+
+    /*Next is to open skin.css*/
     zip.file(insideZIP.name).async("string").then(function success(content) {
       localStorage.setItem("skinCSS", content);
     },
     function error(e) {
       console.log("erreur");
     });
+
+    /*Next is to open main.css, and put it into localstorage*/
     zip.file(insideMain.name).async("string").then(function success(contentMain){
       localStorage.setItem("mainCSS", contentMain);
     });
