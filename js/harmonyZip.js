@@ -1,36 +1,4 @@
- 
-var zip = new JSZip();
-var content;
 
-function getSkinPack(){
-
-  zip.loadAsync( document.getElementById("skin-rep").files[0]).then(function(zip){
-    var allSkin = zip.files;
-
-    var insideZIP = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css"]; // bad way, need to change it for a dynamic way
-    var insideMain = zip.files["skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/main.css"];
-
-    $("#msgSkinpackImportation").empty().append("Skinpack chargé, et prêt à être modifié").css("color", "#2E7D32");
-
-    //NEXT is to get the content of the css files
-
-    /*Next is to open skin.css*/
-    zip.file(insideZIP.name).async("string").then(function success(content) {
-      localStorage.setItem("skinCSS", content);
-    },
-    function error(e) {
-      console.log("erreur");
-    });
-
-    /*Next is to open main.css, and put it into localstorage*/
-    zip.file(insideMain.name).async("string").then(function success(contentMain){
-      localStorage.setItem("mainCSS", contentMain);
-    });
-  },
-  function(){
-    $("#msgSkinpackImportation").empty().append("Erreur lors du chargement").css("color", "red");
-  });
-}
 
 // Check for the various File API support.
 if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -38,21 +6,67 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 } else {
   alert('The File APIs are not fully supported in this browser.');
 }
+/*******************************************************/
+
+
+var zip = new JSZip();
+
+/********** Relative paths & css Files  ***************/
+var skinpack = "starter/harmonySRC0-1_2.zip";
+var skincss = "css/skin.css";
+var maincss = "css/main.css";
+
+/**********  Variables de l'UI   *********************/
+var content;
+var clPrincipale;
+var clSecond;
+var fontFamilly;
+var fontColorTitle;
+var fontColorText;
+
+/*ICI CHARGER LE SKINPACK DEJA PRESENT DANS LE REPERTOIRE DE HARMONY*/
+/*JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
+  if(err) {
+    throw err;
+  }
+  JSZip.loadAsync(data).then(function (zip) {
+    //zip.files contient tous les fichiers du skinpack
+    var insideZIP = zip.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
+    
+    zip.file(insideZIP.name).async("string").then(function success(contentSkinCSS) {
+      
+    });
+  });
+});
+*/
 
 function validateStyle(){
+  JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
+    if(err) {
+      throw err;
+    }
+    JSZip.loadAsync(data).then(function (zip) {
+      //zip.files contient tous les fichiers du skinpack
+      var contentSkinCss = zip.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
+      
+      zip.file(contentSkinCss.name).async("string").then(function success(content, contentSkinCss) {
 
-  var getSkinCss = localStorage.getItem("skinCSS");
-  var getMainCss = localStorage.getItem("mainCSS");
-  var getSkinAll = localStorage.getItem("all");
+        var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
+        zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content+getMainColor);
 
-  /*Get some css properties from harmony*/
-  var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
-
-  zip.file("skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/skin.css", getSkinCss+getMainColor);
-  zip.file("skin/Jm71SrwTAbhQaExrdSmV3d.doss/css/main.css", getMainCss+getMainColor);
-  
-  zip.generateAsync({type:"blob"})
-  .then(function(content) {
-    saveAs(content, "skinpack.zip");
+        zip.generateAsync({type:"blob"}).then(function(content) {
+          saveAs(content, "skinpack.zip");
+        });
+      });
+    });
   });
 }
+
+
+/*     TODO     */
+/*
+  1-  check if input colors changed (now we're writing in skin.css even if it is #FFFFFF)
+  2-  load skin.css and main.css dynamicaly (not skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css)
+  3-  check other way to get colors from the UI
+  4-  modify index.html (just some UI/UX work on it)
+*/
