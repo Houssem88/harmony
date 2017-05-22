@@ -8,7 +8,6 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 }
 /*******************************************************/
 
-
 var zip = new JSZip();
 
 /********** Relative paths & css Files  ***************/
@@ -61,7 +60,6 @@ function validateStyle(){
     });
   });
 }
-
 
 /*     TODO     */
 /*

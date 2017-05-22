@@ -30,11 +30,11 @@
 				<div class="hr-bloc-customize-color">
 					<div class="hr-sub-elem">
 						<!-- Les couleurs -->
-						<h2>Les couleurs</h2>
+						<h2>Couleurs</h2>
 
 						<div class="hr-subsub-elem">
 							<!-- Charte graphique : proposer au moins 2 couleurs de la charte -->
-							<h1>La charte graphique</h1>
+							<h1>Charte graphique</h1>
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur principale</label>
@@ -44,21 +44,6 @@
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur secondaire</label>
 								<input class="jscolor" id="hrColorSecondaire" onchange="getChangeColor2()">
-							</div>
-						</div>
-
-						<div class="hr-subsub-elem">
-							<!-- Couleurs des textes -->
-							<h1>Couleurs des textes</h1>
-							
-							<div class="bloc-harmony-inside">
-								<label for="label-title-color">Les titres</label>
-								<input class="jscolor" id="hrColorTitle" onchange="getChangeColorTitle()">
-							</div>
-
-							<div class="bloc-harmony-inside">
-								<label for="label-prg-color">Les paragraphes</label>
-								<input class="jscolor" id="hrColorPargraph" onchange="getChangeColorText()">
 							</div>
 						</div>
 					</div>
@@ -90,9 +75,9 @@
 						<h2>Textes et typo</h2>
 
 						<div class="hr-subsub-elem">
-							<h1>La police</h1>
+							<h1>Police</h1>
 							<div class="bloc-harmony-inside">
-								<label for="label-text-typo">La police des textes</label>
+								<label for="label-text-typo">Police des textes</label>
 								<select id="select-text-typo" onchange="getFont()">
 									<option value="Arial" style="font-family: arial;">Arial</option>
 									<option value="Verdana" style="font-family: verdana;">Verdana</option>
@@ -101,6 +86,21 @@
 									<option value="Serif" style="font-family: Serif;">Serif</option>
 								</select>
 								<span id="chosenFontFamily"></span>
+							</div>
+						</div>
+
+						<div class="hr-subsub-elem">
+							<!-- Couleurs des textes -->
+							<h1>Couleurs des textes</h1>
+							
+							<div class="bloc-harmony-inside">
+								<label for="label-title-color">Titres</label>
+								<input class="jscolor" id="hrColorTitle" onchange="getChangeColorTitle()">
+							</div>
+
+							<div class="bloc-harmony-inside">
+								<label for="label-prg-color">Paragraphes</label>
+								<input class="jscolor" id="hrColorPargraph" onchange="getChangeColorText()">
 							</div>
 						</div>
 					</div>
