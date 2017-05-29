@@ -15,23 +15,27 @@ var zip = new JSZip();
 var content;
 var getPrincipalColor;
 
-document.getElementById('hrColorPrincipale').addEventListener('change', function(){
-    getPrincipalColor = this.value;
-    console.log(getPrincipalColor); //Je veux retourner getPrincipalColr et l'utiliser à la ligne 41
- }, false);
+document.getElementById('hrColorPrincipale').addEventListener('change', function(getPrincipalColor){
+  getPrincipalColor = this.value;
+  console.log(getPrincipalColor); //Je veux retourner getPrincipalColr et l'utiliser à la ligne 41
+  return getPrincipalColor;
+}, false);
 
 /******************************************************/
 
 /*  Validation du style et génération du nouveau skinpack */
 /*$(".validate-bloc").show();*/
 JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
+  
   if(err) {
     throw err;
   }
+
   zip.loadAsync(data).then(function (zip){
     var skinpack = zip.files;
     return skinpack;
-  }).then(function(skinpack){
+  })
+  .then(function(skinpack){
     //Get skin.css
     var contentSkinCss = skinpack["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
     console.log("skin.css : ", contentSkinCss);
@@ -43,7 +47,8 @@ JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
       return (content);
     });
     return(skinpack)
-  }).then(function(skinpack){
+  })
+  .then(function(skinpack){
     //Get main.css
     var contentMainCss = skinpack["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css"];
     console.log("main.css : ", contentMainCss);
@@ -53,7 +58,8 @@ JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
         return (content)
     });
     return(skinpack);
-  }).then(function(skinpack){
+  })
+  .then(function(skinpack){
     /*get skinSet.xml*/
     var contentSkinXml = skinpack["skinSet.xml"];
     console.log("skinSet.xml : ", contentSkinXml)
@@ -64,7 +70,6 @@ JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
   });
 });
 
-   
 function getChangeColor1(){
   var getPrincipalColor = document.getElementById("hrColorPrincipale").value;
   return (getPrincipalColor);
@@ -123,6 +128,8 @@ function modifyXML(){
   return getNewTitle;
 }
 
+
+//  Compresser et telecharger le skinpack modifié
 function validateStyle(content){
   zip.generateAsync({type:"blob"}).then(function(content) {
     saveAs(content, "skinpack.zip");
