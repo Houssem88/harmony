@@ -15,11 +15,11 @@ var zip = new JSZip();
 var content;
 var getPrincipalColor;
 
-/*document.getElementById('hrColorPrincipale').addEventListener('change', function(){
+document.getElementById('hrColorPrincipale').addEventListener('change', function(){
     getPrincipalColor = this.value;
-    console.log(getPrincipalColor);
+    console.log(getPrincipalColor); //Je veux retourner getPrincipalColr et l'utiliser à la ligne 41
  }, false);
-*/
+
 /******************************************************/
 
 /*  Validation du style et génération du nouveau skinpack */
@@ -28,7 +28,7 @@ JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
   if(err) {
     throw err;
   }
-  zip.loadAsync(data).then(function (zip) {
+  zip.loadAsync(data).then(function (zip){
     var skinpack = zip.files;
     return skinpack;
   }).then(function(skinpack){
@@ -37,11 +37,8 @@ JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
     console.log("skin.css : ", contentSkinCss);
     zip.file(contentSkinCss.name).async("string").then(function success(content) {
       // Get the color from UI
-
-      var x = getChangeColor1();
-
       /*var principalColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";*/
-
+      var x = getChangeColor1();
       zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content+x);
       return (content);
     });
