@@ -1,5 +1,4 @@
 
-
 // Check for the various File API support.
 if (window.File && window.FileReader && window.FileList && window.Blob) {
   // Great success! All the File APIs are supported.
@@ -11,60 +10,124 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 var zip = new JSZip();
 
 /********** Relative paths & css Files  ***************/
-var skinpack = "starter/harmonySRC0-1_2.zip";
-var skincss = "css/skin.css";
-var maincss = "css/main.css";
 
 /**********  Variables de l'UI   *********************/
 var content;
-var clPrincipale;
-var clSecond;
-var fontFamilly;
-var fontColorTitle;
-var fontColorText;
+var getPrincipalColor;
 
-/*ICI CHARGER LE SKINPACK DEJA PRESENT DANS LE REPERTOIRE DE HARMONY*/
-/*JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
+/*document.getElementById('hrColorPrincipale').addEventListener('change', function(){
+    getPrincipalColor = this.value;
+    console.log(getPrincipalColor);
+ }, false);
+*/
+/******************************************************/
+
+/*  Validation du style et génération du nouveau skinpack */
+/*$(".validate-bloc").show();*/
+JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
   if(err) {
     throw err;
   }
-  JSZip.loadAsync(data).then(function (zip) {
-    //zip.files contient tous les fichiers du skinpack
-    var insideZIP = zip.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
-    
-    zip.file(insideZIP.name).async("string").then(function success(contentSkinCSS) {
-      
+  zip.loadAsync(data).then(function (zip) {
+    var skinpack = zip.files;
+    return skinpack;
+  }).then(function(skinpack){
+    //Get skin.css
+    var contentSkinCss = skinpack["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
+    console.log("skin.css : ", contentSkinCss);
+    zip.file(contentSkinCss.name).async("string").then(function success(content) {
+      // Get the color from UI
+
+      var x = getChangeColor1();
+
+      /*var principalColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";*/
+
+      zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content+x);
+      return (content);
+    });
+    return(skinpack)
+  }).then(function(skinpack){
+    //Get main.css
+    var contentMainCss = skinpack["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css"];
+    console.log("main.css : ", contentMainCss);
+
+    zip.file(contentMainCss.name).async("string").then(function success(content) {
+      zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content+"modify main.css");
+        return (content)
+    });
+    return(skinpack);
+  }).then(function(skinpack){
+    /*get skinSet.xml*/
+    var contentSkinXml = skinpack["skinSet.xml"];
+    console.log("skinSet.xml : ", contentSkinXml)
+
+    zip.file(contentSkinXml.name).async("string").then(function success(contentXML){
+
     });
   });
 });
-*/
 
-function validateStyle(){
-  JSZipUtils.getBinaryContent('starter/harmonySRC0-1_2.zip', function(err, data) {
-    if(err) {
-      throw err;
-    }
-    JSZip.loadAsync(data).then(function (zip) {
-      //zip.files contient tous les fichiers du skinpack
-      var contentSkinCss = zip.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
-      
-      zip.file(contentSkinCss.name).async("string").then(function success(content, contentSkinCss) {
-
-        var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
-        zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content+getMainColor);
-
-        zip.generateAsync({type:"blob"}).then(function(content) {
-          saveAs(content, "skinpack.zip");
-        });
-      });
-    });
-  });
+   
+function getChangeColor1(){
+  var getPrincipalColor = document.getElementById("hrColorPrincipale").value;
+  return (getPrincipalColor);
 }
 
-/*     TODO     */
-/*
-  1-  check if input colors changed (now we're writing in skin.css even if it is #FFFFFF)
-  2-  load skin.css and main.css dynamicaly (not skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css)
-  3-  check other way to get colors from the UI
-  4-  modify index.html (just some UI/UX work on it)
+
+    /*******************************************************************************************/
+/*    zip.file(skinsetXML.name).async("string").then(function success(contentXML){
+      parsSkinXML = new DOMParser();
+      xmlDoc = parsSkinXML.parseFromString(contentXML,"text/xml");
+
+      var version_skin = xmlDoc.getElementsByTagName("skinSet")[0].getAttribute("version");
+      version_skin = parseInt(version_skin);
+      new_version = version_skin+1;
+      document.getElementById("oldVersion").innerHTML = version_skin;
+      console.log("version : "+version_skin);
+
+      code_skin = xmlDoc.getElementsByTagName("skinSet")[0].getAttribute("code");
+      document.getElementById("oldCode").innerHTML = code_skin;
+      console.log("code : "+code_skin);
+
+      title_skin = xmlDoc.getElementsByTagName("description")[0].getAttribute("title");
+      console.log("skin title : "+title_skin);
+
+      opale_version = xmlDoc.getElementsByTagName("description")[0].getAttribute("usedIn");
+      document.getElementById("opaleVersion").innerHTML = opale_version;
+      console.log("opale version : "+opale_version);
+
+      var nbrSkin = xmlDoc.getElementsByTagName('skin');
+
+      for(var i=0; i < nbrSkin.length ; i++){
+        var subFile_skin = xmlDoc.getElementsByTagName("skin")[i].getAttribute("generatorCode");
+        if(subFile_skin == "auroraMS"){
+          var auroraMS_src = xmlDoc.getElementsByTagName("skin")[i].getAttribute("src");
+        }
+      }
+    });
+
+
+    //zip.files contient tous les fichiers du skinpack
+    var contentSkinCss = zip.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
+    
+    zip.file(contentSkinCss.name).async("string").then(function success(content) {
+      
+      var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
+      zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content+getMainColor);
+
+    });
+  });
+
+});
 */
+
+function modifyXML(){
+  var getNewTitle = $('#insertTitle').val();
+  return getNewTitle;
+}
+
+function validateStyle(content){
+  zip.generateAsync({type:"blob"}).then(function(content) {
+    saveAs(content, "skinpack.zip");
+  });
+}
