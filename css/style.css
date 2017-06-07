@@ -165,7 +165,7 @@ section{
 	background-color: #009688;
 }
 
-.hr-bloc-customize-color, .hr-bloc-customize-text{
+.hr-bloc-customize-color, .hr-bloc-customize-text, .hr-bloc-param-xml{
 	width: 90%;
 	margin: 10px auto;
 }
