@@ -1,17 +1,3 @@
-var maLib = {
-  skinFiles : {
-    "main.css":content,
-  },
-  onLoad : function(pEvent){
-    console.log("aaa");
-  },
-  loadSkinPackValues : function(pEvent){
-    console.log("b");
-  }
-};
-
-/*window.addEventListener("load", maLib.onLoad, false);*/
-/*console.log(maLib);*/
 
 // Check for the various File API support.
 if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -29,71 +15,7 @@ var zip = new JSZip();
 var content;
 var getPrincipalColor = '';
 
-document.getElementById('hrColorPrincipale').addEventListener('change', function(getPrincipalColor){
-  getPrincipalColor = this.value;
-  console.log(getPrincipalColor); //Je veux retourner getPrincipalColr et l'utiliser à la ligne 41
-}, false);
-
 /******************************************************/
-
-/*  Validation du style et génération du nouveau skinpack */
-/*$(".validate-bloc").show();*/
-
-
-
-
-/*******************************************************************************************/
-/*    zip.file(skinsetXML.name).async("string").then(function success(contentXML){
-      parsSkinXML = new DOMParser();
-      xmlDoc = parsSkinXML.parseFromString(contentXML,"text/xml");
-
-      var version_skin = xmlDoc.getElementsByTagName("skinSet")[0].getAttribute("version");
-      version_skin = parseInt(version_skin);
-      new_version = version_skin+1;
-      document.getElementById("oldVersion").innerHTML = version_skin;
-      console.log("version : "+version_skin);
-
-      code_skin = xmlDoc.getElementsByTagName("skinSet")[0].getAttribute("code");
-      document.getElementById("oldCode").innerHTML = code_skin;
-      console.log("code : "+code_skin);
-
-      title_skin = xmlDoc.getElementsByTagName("description")[0].getAttribute("title");
-      console.log("skin title : "+title_skin);
-
-      opale_version = xmlDoc.getElementsByTagName("description")[0].getAttribute("usedIn");
-      document.getElementById("opaleVersion").innerHTML = opale_version;
-      console.log("opale version : "+opale_version);
-
-      var nbrSkin = xmlDoc.getElementsByTagName('skin');
-
-      for(var i=0; i < nbrSkin.length ; i++){
-        var subFile_skin = xmlDoc.getElementsByTagName("skin")[i].getAttribute("generatorCode");
-        if(subFile_skin == "auroraMS"){
-          var auroraMS_src = xmlDoc.getElementsByTagName("skin")[i].getAttribute("src");
-        }
-      }
-    });
-
-
-    //zip.files contient tous les fichiers du skinpack
-    var contentSkinCss = zip.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
-    
-    zip.file(contentSkinCss.name).async("string").then(function success(content) {
-      
-      var getMainColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";
-      zip.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content+getMainColor);
-
-    });
-  });
-
-});
-*/
-
-function modifyXML(){
-  var getNewTitle = $('#insertTitle').val();
-  return getNewTitle;
-}
-
 
 //  Compresser et telecharger le skinpack modifié
 function validateStyle(){
@@ -147,14 +69,4 @@ function validateStyle(){
       });
     });
   });
-
-  /*zip.generateAsync({type:"blob"}).then(function(skinpack) {
-    saveAs(skinpack, "skinpack.zip");
-  });*/
-
 }
-/*
-function getChangeColor1(){
-  return document.getElementById("hrColorPrincipale").value;
-}
-*/
