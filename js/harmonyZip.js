@@ -20,17 +20,47 @@ function loadSkinPack(url) {
 }
 
 function updateSkinPack(skinPack) {
+  var principalColor = document.getElementById('hrColorPrincipale').value;
   var contentSkinCss = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
   var skinCssUpdated = skinPack.file(contentSkinCss.name).async("string").then((content) => {
-    // Get the color from UI
-    /*var principalColor = "\n.header{ background-color:#"+$("#hrColorPrincipale").val()+";}\n";*/
-    var x = document.getElementById('hrColorPrincipale').value;
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content + x);
+    var content = content.replace(/#ffffff/g, 'Christmas');
+    /*skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content + x);*/
   });
 
   var contentMainCss = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css"];
   var mainCssUpdated = skinPack.file(contentMainCss.name).async("string").then((content) => {
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content + "modify main.css");
+    var content = content.replace(/434e52/g, principalColor);
+    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
+  });
+
+  var svgTopMenu = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-top.svg"];
+  var svgTopMenuUpdated = skinPack.file(svgTopMenu.name).async("string").then((content) => {
+    var content = content.replace(/434e52/g, principalColor); 
+    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-top.svg", content);
+  });
+
+  var svgBottomMenu = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-bottom.svg"];
+  var svgBottomMenuUpdated = skinPack.file(svgBottomMenu.name).async("string").then((content) => {
+    var content = content.replace(/434e52/g, principalColor); 
+    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-bottom.svg", content);
+  });
+
+  var svgIconGrain = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/content/ico.svg"];
+  var svgIconGrainUpdated = skinPack.file(svgIconGrain.name).async("string").then((content) => {
+    var content = content.replace(/434E52/g, principalColor); 
+    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/content/ico.svg", content);
+  });
+
+  var svgBtnMenuIcon = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/menu-tools.svg"];
+  var svgBtnIconUpdated = skinPack.file(svgBtnMenuIcon.name).async("string").then((content) => {
+    var content = content.replace(/434e52/g, principalColor); 
+    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/menu-tools.svg", content);
+  });
+
+  var svgBtnNavIcon = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/buttons.svg"];
+  var svgBtnNavUpdated = skinPack.file(svgBtnNavIcon.name).async("string").then((content) => {
+    var content = content.replace(/434e52/g, principalColor); 
+    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/buttons.svg", content);
   });
 
   var contentSkinXml = skinPack.files["skinSet.xml"];

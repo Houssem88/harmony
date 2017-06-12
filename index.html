@@ -24,8 +24,20 @@
 				<div class="hr-bloc-param-xml">
 					<div class="hr-sub-elem">
 						<h2>Informations</h2>
+
+						<div class="hr-subsub-elem">
+							<div class="bloc-harmony-inside">
+								<label for="label-name-skinpack">Titre du nouveau skin</label>
+								<input type="text" class="hr-input input-text" id="skNewName">
+							</div>
+							<div class="bloc-harmony-inside">
+								<label for="label-version-skinpack">Version du nouveau skin</label>
+								<input type="text" class="hr-input input-text" id="skNewVersion">
+							</div>
+						</div>
 					</div>
 				</div>
+
 				<div class="hr-bloc-customize-color">
 					<div class="hr-sub-elem">
 						<!-- Les couleurs -->
@@ -37,12 +49,12 @@
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur principale</label>
-								<input class="jscolor" id="hrColorPrincipale" onchange="getChangeColor1(this.value)">
+								<input class="jscolor hr-input" id="hrColorPrincipale" onchange="getChangeColor1(this.value)">
 							</div>
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur secondaire</label>
-								<input class="jscolor" id="hrColorSecondaire" onchange="getChangeColor2()">
+								<input class="jscolor hr-input" id="hrColorSecondaire" onchange="getChangeColor2()">
 							</div>
 						</div>
 					</div>
