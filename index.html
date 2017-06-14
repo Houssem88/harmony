@@ -32,7 +32,11 @@
 							</div>
 							<div class="bloc-harmony-inside">
 								<label for="label-version-skinpack">Version du nouveau skin</label>
-								<input type="text" class="hr-input input-text" id="skNewVersion">
+								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMaj" placeholder="Majeur" required="required">
+								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMed" placeholder="Medium" required="required">
+								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMin" placeholder="Mineur" required="required"><br>
+								<span id="oldSkinVersion"></span>
+								<span id="errorVersion" style="display: none;">Veuillez remplir ces 3 champs</span>
 							</div>
 						</div>
 					</div>
@@ -49,12 +53,12 @@
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur principale</label>
-								<input class="jscolor hr-input" id="hrColorPrincipale" onchange="getChangeColor1(this.value)">
+								<input class="jscolor {refine:false} hr-input " id="hrColorPrincipale" onchange="getChangeColor1(this.value)">
 							</div>
 
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Couleur secondaire</label>
-								<input class="jscolor hr-input" id="hrColorSecondaire" onchange="getChangeColor2()">
+								<input class="jscolor {refine:false} hr-input" id="hrColorSecondaire" onchange="getChangeColor2()">
 							</div>
 						</div>
 					</div>
@@ -100,24 +104,39 @@
 						</div>
 
 						<div class="hr-subsub-elem">
-							<!-- Couleurs des textes -->
 							<h1>Couleurs des textes</h1>
-							
 							<div class="bloc-harmony-inside">
 								<label for="label-title-color">Titres</label>
-								<input class="jscolor" id="hrColorTitle" onchange="getChangeColorTitle()">
+								<input class="jscolor {refine:false} hr-input" id="hrColorTitle" onchange="getChangeColorTitle()">
 							</div>
-
 							<div class="bloc-harmony-inside">
 								<label for="label-prg-color">Paragraphes</label>
-								<input class="jscolor" id="hrColorPargraph" onchange="getChangeColorText()">
+								<input class="jscolor {refine:false} hr-input" id="hrColorPargraph" onchange="getChangeColorText()">
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<!-- <button class="btn blue" onclick="changeColorsText()">valider</button> -->
-				<span id="getCss"></span>
+				<div class="hr-bloc-customize-img">
+					<div class="hr-sub-elem">
+						<h2>Images</h2>
+						<div class="hr-subsub-elem">
+							<h1>Blocs pédagogiques</h1>
+							<div class="bloc-harmony-inside">
+								<label>
+									<input id="noImgPedago" type="checkbox" name="img-pedago" value="noImgPedago">Supprimer les icones
+								</label>
+							</div>
+						</div>
+						<div class="hr-subsub-elem">
+							<h1>Types de grains</h1>
+							<div class="bloc-harmony-inside">
+								<label>
+									<input id="noImgGrain" type="checkbox" name="img-grain" value="noImgGrain">Supprimer les icones
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="validate-bloc" style="display:none;">
@@ -135,7 +154,6 @@
 			</div>
 		</div>
 	</section>
-
 	<script type="text/javascript" src="js/harmony.js"></script>
 	<script type="text/javascript" src="js/harmonyZip.js"></script>
 </body>

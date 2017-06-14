@@ -21,15 +21,32 @@ function loadSkinPack(url) {
 
 function updateSkinPack(skinPack) {
   var principalColor = document.getElementById('hrColorPrincipale').value;
+  var secondColor = document.getElementById('hrColorSecondaire').value;
+
   var contentSkinCss = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
   var skinCssUpdated = skinPack.file(contentSkinCss.name).async("string").then((content) => {
-    var content = content.replace(/#ffffff/g, 'Christmas');
-    /*skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css", content + x);*/
+
   });
 
   var contentMainCss = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css"];
   var mainCssUpdated = skinPack.file(contentMainCss.name).async("string").then((content) => {
+    /*Images BP & type Grain*/
+    var noImgPed = document.getElementById("noImgPedago").checked;
+    var noImgGrn = document.getElementById("noImgGrain").checked;
+    
+    if(noImgPed){
+      var content = content.replace('background:url("../img/content/blocks.svg") no-repeat scroll transparent;', 'background:none;');
+      skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
+    }
+
+    if(noImgGrn){
+      var content = content.replace('background: url("../img/content/ico.svg") no-repeat scroll transparent;', 'background:none;');
+      skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
+    }
+
+    /* Colors : principal & secondary */
     var content = content.replace(/434e52/g, principalColor);
+    var content = content.replace(/a/g, secondColor);
     skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
   });
 
@@ -53,7 +70,8 @@ function updateSkinPack(skinPack) {
 
   var svgBtnMenuIcon = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/menu-tools.svg"];
   var svgBtnIconUpdated = skinPack.file(svgBtnMenuIcon.name).async("string").then((content) => {
-    var content = content.replace(/434e52/g, principalColor); 
+    var content = content.replace(/434e52/g, principalColor);
+    var content = content.replace(/e0ecec/g, secondColor);
     skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/menu-tools.svg", content);
   });
 
@@ -62,10 +80,22 @@ function updateSkinPack(skinPack) {
     var content = content.replace(/434e52/g, principalColor); 
     skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/buttons.svg", content);
   });
-
+  
+  /*XML*/
   var contentSkinXml = skinPack.files["skinSet.xml"];
   var skinXmlUpdated = skinPack.file(contentSkinXml.name).async("string").then((content) => {
-    skinPack.file("skinSet.xml", content + "modify skinSet.xml");
+
+    var getNewName = document.getElementById("skNewName").value;
+    if(getNewName){
+      getNewName = "title=\""+getNewName+"\"";
+      var content = content.replace(/title="harmony"/i, getNewName);
+    }
+
+    var getVersionMaj = document.getElementById("skNewVersionMaj");
+    var getVersionMed = document.getElementById("skNewVersionMed");
+    var getVersionMin = document.getElementById("skNewVersionMin");
+
+    skinPack.file("skinSet.xml", content);
   });
   return Promise.all([skinCssUpdated, mainCssUpdated, skinXmlUpdated]).then(() => skinPack)
 }
@@ -78,7 +108,23 @@ function writeSkinPack(skinPack, outputName) {
 }
 
 function validateStyle() {
-  loadSkinPack('starter/harmonySRC0-1_2.zip')
+  var versionMaj = document.getElementById("skNewVersionMaj").checkValidity();
+  var versionMed = document.getElementById("skNewVersionMed").checkValidity();
+  var versionMin = document.getElementById("skNewVersionMin").checkValidity();
+
+  if(versionMin && versionMed && versionMaj){
+    $("#errorVersion").hide();
+    loadSkinPack('starter/harmonySRC0-1_2.skinpack')
     .then((skinPack) => updateSkinPack(skinPack))
     .then((skinPack) => writeSkinPack(skinPack, "skinPack.zip"));
+  }
+  else{
+    $("#errorVersion").show();
+    $('body').scrollTop(0);
+  }
 }
+
+$("#skNewVersionMaj, #skNewVersionMed, #skNewVersionMin").focus(function(){
+  $("#errorVersion").hide();
+})
+
