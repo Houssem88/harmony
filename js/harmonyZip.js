@@ -19,85 +19,133 @@ function loadSkinPack(url) {
   });
 }
 
-function updateSkinPack(skinPack) {
+function updateSkinPack(skinPack, principalColor, secondColor) {
   var principalColor = document.getElementById('hrColorPrincipale').value;
   var secondColor = document.getElementById('hrColorSecondaire').value;
 
-  var contentSkinCss = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/skin.css"];
-  var skinCssUpdated = skinPack.file(contentSkinCss.name).async("string").then((content) => {
+  var versionMaj = document.getElementById("skNewVersionMaj").value;
+  var versionMed = document.getElementById("skNewVersionMed").value;
+  var versionMin = document.getElementById("skNewVersionMin").value;
 
-  });
+  if(principalColor == '' && secondColor == ''){
+    principalColor = '#434e52';
+    secondColor = '#e0ecec';
+  }
 
-  var contentMainCss = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css"];
-  var mainCssUpdated = skinPack.file(contentMainCss.name).async("string").then((content) => {
-    /*Images BP & type Grain*/
-    var noImgPed = document.getElementById("noImgPedago").checked;
-    var noImgGrn = document.getElementById("noImgGrain").checked;
+  else{
+    /*XML*/
+    var contentSkinXml = skinPack.files["skinSet.xml"];
+    var skinXmlUpdated = skinPack.file(contentSkinXml.name).async("string").then((content) => {
+
+      parsSkinXML = new DOMParser();
+      xmlDoc = parsSkinXML.parseFromString(content,"application/xml");
+
+      //Modication du titre
+      var getNewTitle = document.getElementById("skNewName").value;
+      var getNewVersion = versionMaj+"-"+versionMed+"_"+versionMin;
+      var setNewTitle = getNewTitle+getNewVersion;
+
+      if(getNewTitle){
+        xmlDoc.querySelector("description").setAttribute("title", getNewTitle);
+        var serializer = new XMLSerializer();
+        skinPack.file("skinSet.xml", serializer.serializeToString(xmlDoc));
+      }
+      //LA VERSION
+    });
+
+    var auroraWPath = xmlDoc.querySelector('skin[generatorCode=auroraW]').getAttribute('src');
     
-    if(noImgPed){
-      var content = content.replace('background:url("../img/content/blocks.svg") no-repeat scroll transparent;', 'background:none;');
-      skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
-    }
+    var contentSkinCss = skinPack.files[auroraWPath+"/css/skin.css"];
+    var skinCssUpdated = skinPack.file(contentSkinCss.name).async("string").then((content) => {
 
-    if(noImgGrn){
-      var content = content.replace('background: url("../img/content/ico.svg") no-repeat scroll transparent;', 'background:none;');
-      skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
-    }
+    });
 
-    /* Colors : principal & secondary */
-    var content = content.replace(/434e52/g, principalColor);
-    var content = content.replace(/a/g, secondColor);
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/css/main.css", content);
-  });
+    var contentMainCss = skinPack.files[auroraWPath+"/css/main.css"];
+    var mainCssUpdated = skinPack.file(contentMainCss.name).async("string").then((content) => {
+      /*Images BP & type Grain*/
+      var noImgPed = document.getElementById("noImgPedago").checked;
+      var noImgGrn = document.getElementById("noImgGrain").checked;
+      
+      if(noImgPed){
+        var content = content.replace('background:url("../img/content/blocks.svg") no-repeat scroll transparent;', 'background:none;');
+        skinPack.file(auroraWPath+"/css/main.css", content);
+      }
 
-  var svgTopMenu = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-top.svg"];
-  var svgTopMenuUpdated = skinPack.file(svgTopMenu.name).async("string").then((content) => {
-    var content = content.replace(/434e52/g, principalColor); 
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-top.svg", content);
-  });
+      if(noImgGrn){
+        var content = content.replace('background: url("../img/content/ico.svg") no-repeat scroll transparent;', 'background:none;');
+        skinPack.file(auroraWPath+"/css/main.css", content);
+      }
 
-  var svgBottomMenu = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-bottom.svg"];
-  var svgBottomMenuUpdated = skinPack.file(svgBottomMenu.name).async("string").then((content) => {
-    var content = content.replace(/434e52/g, principalColor); 
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/back-bottom.svg", content);
-  });
+      /* Colors : principal & secondary */
+      var content = content.replace(/434e52/g, principalColor);
+      var content = content.replace(/e0ecec/g, secondColor);
+      skinPack.file(auroraWPath+"/css/main.css", content);
+    });
 
-  var svgIconGrain = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/content/ico.svg"];
-  var svgIconGrainUpdated = skinPack.file(svgIconGrain.name).async("string").then((content) => {
-    var content = content.replace(/434E52/g, principalColor); 
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/content/ico.svg", content);
-  });
+    var svgPdg = skinPack.files[auroraWPath+"/img/tpl/back-home.svg"];
+    var svgPdgUpdated = skinPack.file(svgPdg.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor);
+      var content = content.replace(/f2f2f2/g, secondColor);
+      skinPack.file(auroraWPath+"/img/tpl/back-home.svg", content);
+    });
 
-  var svgBtnMenuIcon = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/menu-tools.svg"];
-  var svgBtnIconUpdated = skinPack.file(svgBtnMenuIcon.name).async("string").then((content) => {
-    var content = content.replace(/434e52/g, principalColor);
-    var content = content.replace(/e0ecec/g, secondColor);
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/menu-tools.svg", content);
-  });
+    var svgTopMenu = skinPack.files[auroraWPath+"/img/tpl/back-top.svg"];
+    var svgTopMenuUpdated = skinPack.file(svgTopMenu.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor);
+      skinPack.file(auroraWPath+"/img/tpl/back-top.svg", content);
+    });
 
-  var svgBtnNavIcon = skinPack.files["skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/buttons.svg"];
-  var svgBtnNavUpdated = skinPack.file(svgBtnNavIcon.name).async("string").then((content) => {
-    var content = content.replace(/434e52/g, principalColor); 
-    skinPack.file("skin/JI4sQEkU9ogpyr5CKcd2yg.doss/img/tpl/buttons.svg", content);
-  });
+    var svgBottomMenu = skinPack.files[auroraWPath+"/img/tpl/back-bottom.svg"];
+    var svgBottomMenuUpdated = skinPack.file(svgBottomMenu.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor); 
+      skinPack.file(auroraWPath+"/img/tpl/back-bottom.svg", content);
+    });
+
+    var svgBackMenu = skinPack.files[auroraWPath+"/img/tpl/back-menu.svg"];
+    var svgBackMenuUpdated = skinPack.file(svgBackMenu.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, secondColor); 
+      skinPack.file(auroraWPath+"/img/tpl/back-menu.svg", content);
+    });
+
+    var svgIconGrain = skinPack.files[auroraWPath+"/img/content/ico.svg"];
+    var svgIconGrainUpdated = skinPack.file(svgIconGrain.name).async("string").then((content) => {
+      var content = content.replace(/434E52/g, principalColor); 
+      skinPack.file(auroraWPath+"/img/content/ico.svg", content);
+    });
+
+    var svgBtnMenuIcon = skinPack.files[auroraWPath+"/img/tpl/menu-tools.svg"];
+    var svgBtnIconUpdated = skinPack.file(svgBtnMenuIcon.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor);
+      var content = content.replace(/e0ecec/g, secondColor);
+      skinPack.file(auroraWPath+"/img/tpl/menu-tools.svg", content);
+    });
+
+    var svgBtnNavIcon = skinPack.files[auroraWPath+"/img/tpl/buttons.svg"];
+    var svgBtnNavUpdated = skinPack.file(svgBtnNavIcon.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor); 
+      skinPack.file(auroraWPath+"/img/tpl/buttons.svg", content);
+    });
+
+    var svgSearch = skinPack.files[auroraWPath+"/img/search/find.svg"];
+    var svgSearchUpdated = skinPack.file(svgSearch.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor);
+      skinPack.file(auroraWPath+"/img/search/find.svg", content);
+    });
+
+    var svgToggle = skinPack.files[auroraWPath+"/img/tpl/menu-toggle.svg"];
+    var svgToggleUpdated = skinPack.file(svgToggle.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor);
+      skinPack.file(auroraWPath+"/img/tpl/menu-toggle.svg", content);
+    });
+
+    var svgBottomQuiz = skinPack.files[auroraWPath+"/img/tpl/back-bottom-straight.svg"];
+    var svgBottomQuizUpdated = skinPack.file(svgBottomQuiz.name).async("string").then((content) => {
+      var content = content.replace(/434e52/g, principalColor);
+      skinPack.file(auroraWPath+"/img/tpl/back-bottom-straight.svg", content);
+    });
+  }
+  return Promise.all([skinCssUpdated, mainCssUpdated, skinXmlUpdated, svgPdgUpdated,svgTopMenuUpdated ,svgBottomMenuUpdated ,svgBackMenuUpdated, svgIconGrainUpdated ,svgBtnIconUpdated ,svgBtnNavUpdated, svgSearchUpdated, svgToggleUpdated, svgBottomQuizUpdated]).then(() => skinPack)
   
-  /*XML*/
-  var contentSkinXml = skinPack.files["skinSet.xml"];
-  var skinXmlUpdated = skinPack.file(contentSkinXml.name).async("string").then((content) => {
-
-    var getNewName = document.getElementById("skNewName").value;
-    if(getNewName){
-      getNewName = "title=\""+getNewName+"\"";
-      var content = content.replace(/title="harmony"/i, getNewName);
-    }
-
-    var getVersionMaj = document.getElementById("skNewVersionMaj");
-    var getVersionMed = document.getElementById("skNewVersionMed");
-    var getVersionMin = document.getElementById("skNewVersionMin");
-
-    skinPack.file("skinSet.xml", content);
-  });
-  return Promise.all([skinCssUpdated, mainCssUpdated, skinXmlUpdated]).then(() => skinPack)
 }
 
 
@@ -108,15 +156,24 @@ function writeSkinPack(skinPack, outputName) {
 }
 
 function validateStyle() {
+  var newNameCheck = document.getElementById("skNewName").checkValidity();
   var versionMaj = document.getElementById("skNewVersionMaj").checkValidity();
   var versionMed = document.getElementById("skNewVersionMed").checkValidity();
   var versionMin = document.getElementById("skNewVersionMin").checkValidity();
 
-  if(versionMin && versionMed && versionMaj){
+  var verMaj = document.getElementById("skNewVersionMaj").value;
+  var verMed = document.getElementById("skNewVersionMed").value;
+  var verMin = document.getElementById("skNewVersionMin").value;
+
+  var getNewTitle = document.getElementById("skNewName").value;
+  var getNewVersion = verMaj+"-"+verMed+"_"+verMin;
+  var setNewTitle = getNewTitle+getNewVersion;
+
+  if(newNameCheck && versionMaj && versionMed && versionMin){
     $("#errorVersion").hide();
-    loadSkinPack('starter/harmonySRC0-1_2.skinpack')
+    loadSkinPack('starter/OpaleSkinUp0-1_1.skinpack')
     .then((skinPack) => updateSkinPack(skinPack))
-    .then((skinPack) => writeSkinPack(skinPack, "skinPack.zip"));
+    .then((skinPack) => writeSkinPack(skinPack, setNewTitle+".skinpack"));
   }
   else{
     $("#errorVersion").show();
@@ -128,3 +185,17 @@ $("#skNewVersionMaj, #skNewVersionMed, #skNewVersionMin").focus(function(){
   $("#errorVersion").hide();
 })
 
+
+loadSkinPack('starter/OpaleSkinUp0-1_1.skinpack').then((skinPack) => readSkinXml(skinPack))
+
+function readSkinXml(skinPack){
+  var contentSkinXml = skinPack.files["skinSet.xml"];
+  var skinXmlUpdated = skinPack.file(contentSkinXml.name).async("string").then((content) => {
+    parsSkinXML = new DOMParser();
+    xmlDoc = parsSkinXML.parseFromString(content,"application/xml");
+    var version_skin = xmlDoc.getElementsByTagName("skinSet")[0].getAttribute("code");
+    version_skin = version_skin.replace(/[a-zA-Z~]+/g,'');
+    version_skin = version_skin.replace(/[_-]+/g,'.');
+    document.getElementById("oldSkinVersion").innerHTML = "(Version initiale : "+version_skin+")";
+  });
+}

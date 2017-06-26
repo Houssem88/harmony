@@ -68,13 +68,18 @@ input[type=checkbox] {
 
 #errorVersion{
 	display: inline-block;
+	width: 70%;
 	padding:10px;
 	margin-top: 5px;
 	border:2px solid #f00000;
 	border-left: 5px solid #f00000;
-	position: absolute;
 	color: #000;
 	font-family: "montserratRegular";
+}
+
+.reqStar::after{
+	content: " *";
+	color: #f00000;
 }
 
 .hr-input{
@@ -214,6 +219,14 @@ input[type=checkbox] {
 	width: 100%;
 }
 
+.bloc-harmony-inside #oldSkinVersion{
+	position: absolute;
+	display: inline-block;
+	margin-left:-95px;
+	font-family: "montserratItalic";
+	font-size: 12px;
+}
+
 /*	Step : import skinpack	*/
 #pg-home h2{
 	color: #FFFFFF;
@@ -273,7 +286,8 @@ input[type=checkbox] {
 }
 
 .visualisation-inside{
-	border:3px solid #757575;
+	border:2px solid #757575;
+	border-bottom: 40px solid #616161;
 	height: 100%;
 	background-color: #EEEEEE;
 }
@@ -302,14 +316,27 @@ input[type=checkbox] {
 
 }
 
-.previs-screen-leftMenu{
-	width: 40px;
-	height: 86%;
-	background-color: #616161;
-	border-top: 2px solid #FFFFFF;
+.previs-screen-BottomMenu{
+	width: 100%;
+	height: 40px;
+	text-align: right;
 	position: absolute;
-	top:44px;
+	bottom: 0px;
 	z-index: 50;
+}
+
+.nav-bottom-buttons{
+    height: 100%;
+    padding-top: 48px;
+    margin-right: 10px;
+}
+
+.nav-btm-btn{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: #90A4AE;
 }
 
 .hr-bloc-generate{
@@ -322,9 +349,8 @@ input[type=checkbox] {
 	box-sizing:border-box;
 }
 
-#visTitle,
-#visParag{
-	
+#visTitle{
+	border-bottom: 1px solid #000;
 }
 
 #chosenFontFamily{

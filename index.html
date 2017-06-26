@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Harmony</title>
+	<title>Opale SkinUp</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="js/jszip/dist/jszip.js"></script>
 	<script type="text/javascript" src="js/jszip-utils/dist/jszip-utils.js"></script>
-	<script type="text/javascript" src="js/jszip/vendor/fileSaver.js"></script>
+	<script type="text/javascript" src="js/jszip/vendor/FileSaver.js"></script>
 	<script src="js/jscolor/jscolor.min.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
 	<span class="bg-absolute"></span>
 		<div class="container">
 			<div class="bloc-harmony-head" id="pg-home">
-				<h2>Harmony</h2>
+				<h2>Opale SkinUp</h2>
 			</div>
 			<div class="bloc-harmony" id="pg-colors">
 				<div class="hr-bloc-param-xml">
@@ -27,17 +27,16 @@
 
 						<div class="hr-subsub-elem">
 							<div class="bloc-harmony-inside">
-								<label for="label-name-skinpack">Titre du nouveau skin</label>
-								<input type="text" class="hr-input input-text" id="skNewName">
+								<label class="sk-title reqStar">Titre du nouveau skin</label>
+								<input type="text" class="hr-input input-text" id="skNewName" required="required">
 							</div>
 							<div class="bloc-harmony-inside">
-								<label for="label-version-skinpack">Version du nouveau skin</label>
+								<label class="sk-version reqStar">Version du nouveau skin</label><span id="oldSkinVersion"></span>
 								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMaj" placeholder="Majeur" required="required">
 								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMed" placeholder="Medium" required="required">
-								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMin" placeholder="Mineur" required="required"><br>
-								<span id="oldSkinVersion"></span>
-								<span id="errorVersion" style="display: none;">Veuillez remplir ces 3 champs</span>
+								<input type="number" min="0" class="hr-input input-text input-version" id="skNewVersionMin" placeholder="Mineur" required="required"><br>			
 							</div>
+							<span id="errorVersion" style="display: none;">Veuillez saisir un intitulé et une version</span>
 						</div>
 					</div>
 				</div>
@@ -52,12 +51,12 @@
 							<h1>Charte graphique</h1>
 
 							<div class="bloc-harmony-inside">
-								<label for="label-title-color">Couleur principale</label>
+								<label for="hrColorPrincipale">Couleur principale</label>
 								<input class="jscolor {refine:false} hr-input " id="hrColorPrincipale" onchange="getChangeColor1(this.value)">
 							</div>
 
 							<div class="bloc-harmony-inside">
-								<label for="label-title-color">Couleur secondaire</label>
+								<label for="hrColorSecondaire">Couleur secondaire</label>
 								<input class="jscolor {refine:false} hr-input" id="hrColorSecondaire" onchange="getChangeColor2()">
 							</div>
 						</div>
@@ -73,9 +72,15 @@
 									<div class="previs-btn-menu" id="visBtnMenuTop"></div>
 								</div>
 							</div>
-							<div class="previs-screen-leftMenu" id="visRightMenu"></div>
+							<div class="previs-screen-BottomMenu" id="visBottomMenu">
+								<div class="nav-bottom-buttons">
+									<div class="nav-btm-btn"></div>
+									<div class="nav-btm-btn"></div>
+									<div class="nav-btm-btn"></div>
+								</div>
+							</div>
 							<div class="previs-inside-cours">
-								<h1 id="visTitle">harmony</h1>
+								<h1 id="visTitle">Opale SkinUp</h1>
 								<p id="visParag">paragraphe ? c'est ici que ça se passe :)</p>
 							</div>
 						</div>
@@ -91,13 +96,19 @@
 						<div class="hr-subsub-elem">
 							<h1>Police</h1>
 							<div class="bloc-harmony-inside">
-								<label for="label-text-typo">Police des textes</label>
+								<label for="select-text-typo">Police des textes</label>
 								<select id="select-text-typo" onchange="getFont()">
 									<option value="Arial" style="font-family: arial;">Arial</option>
 									<option value="Verdana" style="font-family: verdana;">Verdana</option>
 									<option value="Helvetica" style="font-family: helvetica;">Helvetica</option>
 									<option value="Sans-Serif" style="font-family: Sans-Serif;">Sans-Serif</option>
 									<option value="Serif" style="font-family: Serif;">Serif</option>
+									<option value="Times New Roman" style="font-family: Times New Roman;">Times New Roman</option>
+									<option value="Palatino Linotype" style="font-family: Palatino Linotype;">Palatino Linotype</option>
+									<option value="Impact" style="font-family: Impact;">Impact</option>
+									<option value="Comic Sans MS" style="font-family: Comic Sans MS;">Comic Sans MS</option>
+									<option value="Courier New" style="font-family: Courier New;">Courier New</option>
+									<option value="Lucida Console" style="font-family: Lucida Console;">Lucida Console</option>
 								</select>
 								<span id="chosenFontFamily"></span>
 							</div>
@@ -106,11 +117,11 @@
 						<div class="hr-subsub-elem">
 							<h1>Couleurs des textes</h1>
 							<div class="bloc-harmony-inside">
-								<label for="label-title-color">Titres</label>
+								<label for="hrColorTitle">Titres</label>
 								<input class="jscolor {refine:false} hr-input" id="hrColorTitle" onchange="getChangeColorTitle()">
 							</div>
 							<div class="bloc-harmony-inside">
-								<label for="label-prg-color">Paragraphes</label>
+								<label for="hrColorPargraph">Paragraphes</label>
 								<input class="jscolor {refine:false} hr-input" id="hrColorPargraph" onchange="getChangeColorText()">
 							</div>
 						</div>

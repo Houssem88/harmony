@@ -15,7 +15,7 @@ function getFont(){
 function getChangeColor1(){
 	var getPrincipalColor = $("#hrColorPrincipale").val();
 	$("#visHeard").css("background-color", "#"+getPrincipalColor);
-	$("#visRightMenu").css("background-color", "#"+getPrincipalColor);
+	$(".visualisation-inside").css("border-bottom", "40px solid #"+getPrincipalColor);
 }
 
 function getChangeColor2(){
