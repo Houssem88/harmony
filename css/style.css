@@ -345,12 +345,71 @@ input[type=checkbox] {
 
 .previs-inside-cours{
 	width: 100%;
-	padding:20px 0px 0px 65px;
+	padding:20px 0px 0px 50px;
 	box-sizing:border-box;
 }
 
+.previs-BP-block{
+	width: 95%;
+	height: auto;
+}
+
+.previs-BP-block h5, .BP-type, .BP-icone{
+	display: inline-block;
+}
+
+.pervis-BP-header{
+	padding: 8px;
+    border: 1px solid;
+    border-top: none;
+    border-left: none;
+}
+
+.BP-type{
+	float: right;
+}
+
+.BP-icone{
+	position: absolute;
+	right: 75px;
+	margin-top: -6px;
+	width: 25px;
+	height: 25px;
+	border-radius: 50px;
+	border: 2px dotted #F44336;
+	background-color: #FFCDD2;
+}
+
+.GR-icone{
+	position: absolute;
+	right: 25px;
+	top: 50px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	border: 3px dotted #F44336;
+	background-color: #FFCDD2;
+}
+
+.pervis-BP-content{
+    height: 70px;
+    border: 1px solid;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    padding: 10px;
+    color: #000;
+    font-size: 12px;
+    font-family: "montserratRegular";
+    background-color: rgba(0,0,0,0.1);
+}
+
+.toggleIcone{
+	display: none;
+}
+
 #visTitle{
-	border-bottom: 1px solid #000;
+	display: inline-block;
 }
 
 #chosenFontFamily{

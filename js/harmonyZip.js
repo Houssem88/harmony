@@ -211,6 +211,9 @@ function readSkinXml(skinPack){
     var version_skin = xmlDoc.getElementsByTagName("skinSet")[0].getAttribute("code");
     version_skin = version_skin.replace(/[a-zA-Z~]+/g,'');
     version_skin = version_skin.replace(/[_-]+/g,'.');
-    document.getElementById("oldSkinVersion").innerHTML = "(Version initiale : "+version_skin+")";
+    /*document.getElementById("oldSkinVersion").innerHTML = "(Version initiale : "+version_skin+")";*/
+
+    var opale_version = xmlDoc.getElementsByTagName("description")[0].getAttribute("usedIn");
+    document.getElementById("oldSkinVersion").innerHTML = "(compatible avec : "+opale_version+")";
   });
 }

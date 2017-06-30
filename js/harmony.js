@@ -8,7 +8,7 @@ $(".hr-elem-color").hover(function(){
 /*	Get/Set which Font-family */
 function getFont(){
 	var getFontFamily = $("#select-text-typo").val();
-	$('#visTitle').css("font-family", getFontFamily);
+	$('.previs-inside-cours p, h5, #visTitle, .pervis-BP-content ').css("font-family", getFontFamily);
 }
 
 /*	get style on visualitaion bloc */
@@ -16,6 +16,9 @@ function getChangeColor1(){
 	var getPrincipalColor = $("#hrColorPrincipale").val();
 	$("#visHeard").css("background-color", "#"+getPrincipalColor);
 	$(".visualisation-inside").css("border-bottom", "40px solid #"+getPrincipalColor);
+	$(".pervis-BP-header").css("border-bottom", "1px solid #"+getPrincipalColor).css("border-right", "1px solid #"+getPrincipalColor);
+	$(".pervis-BP-content").css("border-right", "1px solid #"+getPrincipalColor)
+
 }
 
 function getChangeColor2(){
@@ -31,4 +34,12 @@ function getChangeColorTitle(){
 function getChangeColorText(){
 	var getTextColor = $("#hrColorPargraph").val();
 	$("#visParag").css("color", "#"+getTextColor);
+}
+
+function ToggleBpIcone(){
+	$("#BpIcone").toggleClass("toggleIcone");
+}
+
+function ToggleGrnIcone(){
+	$("#GrIcone").toggleClass("toggleIcone");
 }

@@ -81,12 +81,25 @@
 							</div>
 							<div class="previs-inside-cours">
 								<h1 id="visTitle">Opale SkinUp</h1>
+								<span id="GrIcone" class="GR-icone"></span>
 								<p id="visParag">paragraphe ? c'est ici que ça se passe :)</p>
+								<div id="visBpBlock" class="previs-BP-block">
+									<div class="pervis-BP-header">
+										<h5>Balise pédagogique</h5>
+										<div class="BP-type">
+											<span id="BpIcone" class="BP-icone"></span>
+											<h5>Type</h5>
+										</div>
+									</div>
+									<div class="pervis-BP-content">
+										Paragraphe de la balise pédagogique.
+									</div>
+								</div>
 							</div>
 						</div>
 
 						<div class="hr-bloc-generate">
-							<button class="btn green btn-large" onclick="validateStyle()">valider</button>
+							<button class="btn green btn-large" onclick="validateStyle()">Exporter</button>
 						</div>
 					</div>
 				</div>
@@ -134,7 +147,7 @@
 							<h1>Blocs pédagogiques</h1>
 							<div class="bloc-harmony-inside">
 								<label>
-									<input id="noImgPedago" type="checkbox" name="img-pedago" value="noImgPedago">Supprimer les icones
+									<input id="noImgPedago" type="checkbox" name="img-pedago" value="noImgPedago" onclick="ToggleBpIcone()">Supprimer les icones
 								</label>
 							</div>
 						</div>
@@ -142,7 +155,7 @@
 							<h1>Types de grains</h1>
 							<div class="bloc-harmony-inside">
 								<label>
-									<input id="noImgGrain" type="checkbox" name="img-grain" value="noImgGrain">Supprimer les icones
+									<input id="noImgGrain" type="checkbox" name="img-grain" value="noImgGrain" onclick="ToggleGrnIcone()">Supprimer les icones
 								</label>
 							</div>
 						</div>
