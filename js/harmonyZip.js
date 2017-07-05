@@ -59,6 +59,8 @@ function updateSkinPack(skinPack, principalColor, secondColor) {
     var setNewTitle = getNewTitle+getNewVersion;
 
     if(getNewTitle){
+      var newCode = "~"+setNewTitle;
+      xmlDoc.querySelector("skinSet").setAttribute("code", newCode);
       xmlDoc.querySelector("description").setAttribute("title", getNewTitle);
       var serializer = new XMLSerializer();
       skinPack.file("skinSet.xml", serializer.serializeToString(xmlDoc));
@@ -186,7 +188,7 @@ function validateStyle() {
 
   if(newNameCheck && versionMaj && versionMed && versionMin){
     $("#errorVersion").hide();
-    loadSkinPack('starter/OpaleSkinUp0-1_1.skinpack')
+    loadSkinPack('starter/OpaleSkinUp0-1_3.skinpack')
     .then((skinPack) => updateSkinPack(skinPack))
     .then((skinPack) => writeSkinPack(skinPack, setNewTitle+".skinpack"));
   }
@@ -201,7 +203,7 @@ $("#skNewVersionMaj, #skNewVersionMed, #skNewVersionMin").focus(function(){
 })
 
 
-loadSkinPack('starter/OpaleSkinUp0-1_1.skinpack').then((skinPack) => readSkinXml(skinPack))
+loadSkinPack('starter/OpaleSkinUp0-1_3.skinpack').then((skinPack) => readSkinXml(skinPack))
 
 function readSkinXml(skinPack){
   var contentSkinXml = skinPack.files["skinSet.xml"];
